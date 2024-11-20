@@ -1,0 +1,155 @@
+import React, { useState } from 'react';
+import { Card } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
+const FractionWebApp = () => {
+  const [activeTab, setActiveTab] = useState('theory');
+
+  // Content sections
+  const TheorySection = () => (
+    <Card className="p-4">
+      <h2 className="text-xl font-bold mb-4">Бутархайн онол</h2>
+      <div className="space-y-4">
+        <div className="bg-white rounded-lg p-4 shadow">
+          <h3 className="font-bold mb-2">1. Бутархай гэж юу вэ?</h3>
+          <p className="text-gray-600 mb-2">
+            Бутархай нь тоог хэсгээр илэрхийлсэн хэлбэр юм.
+          </p>
+          <div className="bg-gray-50 p-3 rounded">
+            <p className="font-medium mb-1">Жишээ:</p>
+            <ul className="list-disc list-inside">
+              <li>1/2 = нэг хоёрны нэг</li>
+              <li>3/4 = гурван дөрөвний гурав</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </Card>
+  );
+
+  const VideoSection = () => (
+    <Card className="p-4">
+      <h2 className="text-xl font-bold mb-4">Видео хичээлүүд</h2>
+      <div className="space-y-4">
+        {[
+          { title: "Бутархайн үндэс", duration: "15:00" },
+          { title: "Нэмэх, хасах", duration: "20:00" }
+        ].map((video, idx) => (
+          <div key={idx} className="bg-white rounded-lg p-4 shadow">
+            <h3 className="font-bold">{video.title}</h3>
+            <p className="text-gray-500">{video.duration}</p>
+          </div>
+        ))}
+      </div>
+    </Card>
+  );
+
+  const PracticeSection = () => (
+    <Card className="p-4">
+      <h2 className="text-xl font-bold mb-4">Дасгал бодлогууд</h2>
+      <div className="space-y-4">
+        <div className="bg-white rounded-lg p-4 shadow">
+          <h3 className="font-bold mb-2">Хялбар түвшин</h3>
+          <div className="bg-gray-50 p-3 rounded">
+            <p className="mb-2">1/2 + 1/2 = ?</p>
+            <button className="text-blue-500">
+              Хариулт харах
+            </button>
+          </div>
+        </div>
+      </div>
+    </Card>
+  );
+
+  const GameSection = () => (
+    <Card className="p-4">
+      <h2 className="text-xl font-bold mb-4">Хурдны мастер</h2>
+      <div className="space-y-4">
+        <button className="w-full bg-blue-500 text-white p-3 rounded">
+          Нэмэх (Хялбар)
+        </button>
+        <button className="w-full bg-green-500 text-white p-3 rounded">
+          Үржих (Дунд)
+        </button>
+        <button className="w-full bg-purple-500 text-white p-3 rounded">
+          Холимог (Хэцүү)
+        </button>
+      </div>
+    </Card>
+  );
+
+  const ResultsSection = () => (
+    <Card className="p-4">
+      <h2 className="text-xl font-bold mb-4">Үр дүн</h2>
+      <div className="space-y-4">
+        <div className="bg-blue-500 text-white p-4 rounded-lg text-center">
+          <p className="text-lg">Нийт оноо</p>
+          <p className="text-3xl font-bold">850</p>
+        </div>
+        <div className="bg-white rounded-lg p-4 shadow">
+          <h3 className="font-bold mb-2">Шагналууд</h3>
+          <div className="grid grid-cols-3 gap-4 text-center">
+            <div>
+              <p className="text-2xl">🥇</p>
+              <p className="text-sm">Хурдны мастер</p>
+            </div>
+            <div>
+              <p className="text-2xl">🏆</p>
+              <p className="text-sm">Топ сурагч</p>
+            </div>
+            <div>
+              <p className="text-2xl">⭐</p>
+              <p className="text-sm">100 бодлого</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Card>
+  );
+
+  return (
+    <div className="max-w-md mx-auto p-4">
+      <Tabs defaultValue="theory" className="w-full">
+        <TabsList className="grid w-full grid-cols-5">
+          <TabsTrigger value="theory" className="text-xs sm:text-sm">
+            📚 Онол
+          </TabsTrigger>
+          <TabsTrigger value="video" className="text-xs sm:text-sm">
+            🎥 Видео
+          </TabsTrigger>
+          <TabsTrigger value="practice" className="text-xs sm:text-sm">
+            ✏️ Дасгал
+          </TabsTrigger>
+          <TabsTrigger value="game" className="text-xs sm:text-sm">
+            🎮 Тоглоом
+          </TabsTrigger>
+          <TabsTrigger value="results" className="text-xs sm:text-sm">
+            📊 Үр дүн
+          </TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="theory">
+          <TheorySection />
+        </TabsContent>
+        
+        <TabsContent value="video">
+          <VideoSection />
+        </TabsContent>
+        
+        <TabsContent value="practice">
+          <PracticeSection />
+        </TabsContent>
+        
+        <TabsContent value="game">
+          <GameSection />
+        </TabsContent>
+        
+        <TabsContent value="results">
+          <ResultsSection />
+        </TabsContent>
+      </Tabs>
+    </div>
+  );
+};
+
+export default FractionWebApp;
